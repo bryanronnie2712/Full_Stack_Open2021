@@ -1,0 +1,31 @@
+.success{
+    color: greenyellow;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+
+.alerts{
+
+  background: lightgrey;
+  font-size: 20px;
+
+}
+
+
+.alerts h3{
+    font-size: 25px;
+    padding-left: 30px;
+    font-weight: 200;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#add_button{
+    width : 232px;
+}
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
