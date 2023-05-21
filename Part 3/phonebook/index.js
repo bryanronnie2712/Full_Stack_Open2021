@@ -39,8 +39,7 @@ app.get("/info", (request, response, next) => {
   Person.find({})
     .then((people) => {
       response.send(
-        `<p>Phonebook has info for ${
-          people.length
+        `<p>Phonebook has info for ${people.length
         } people</p><p>${new Date()}</p>`
       );
     })
@@ -62,7 +61,7 @@ app.post("/api/persons", (request, response, next) => {
     name: name,
     number: number,
   });
-  console.log(person)
+  // console.log(person)
   person
     .save()
     .then((savedPerson) => {

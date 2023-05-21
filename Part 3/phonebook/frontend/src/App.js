@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const baseUrl = process.env.API_URL || 'https://phone-servicefs23.onrender.com/api/persons';
+const baseUrl = process.env.API_URL || 'https://phone-servicefs23.onrender.com';
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -14,7 +14,7 @@ const App = () => {
   
 
   const hook = () => {
-    axios.get(baseUrl)
+    axios.get(baseUrl+'/api/persons')
       .then(response => {
         setPersons(response.data)
       })
@@ -30,7 +30,7 @@ const App = () => {
     if (message === null ) {
       return null
     }
-    if(message.includes('Enter a name') || message === 'Enter a number')
+    if(message.includes('Enter a name') || message === 'Enter a number' || message === 'Please check your number: it should not exceed 10 digits' || message === 'Name should be minimum 3 characters'     )
     {
       return (
         <div style = {{ color: "red",
@@ -73,7 +73,7 @@ const App = () => {
     if(personsArray.includes(personObj.name)){
       persons.forEach(element => {
         if(element.name === newName && newName !== null && newNum !== null) {
-          axios.put(`${baseUrl}/${element.id}`, personObj).then(response => {
+          axios.put(`${baseUrl}/api/persons/${element.id}`, personObj).then(response => {
           setPersons(persons.map(person => person.id === response.data.id ? response.data : person))
           setNewName('')
           setNewNum('')
@@ -105,9 +105,15 @@ const App = () => {
     else if(newNum === ''){
       setMsgs('Enter a number')
     }
+    else if(newNum.length > 10){
+      setMsgs('Please check your number: it should not exceed 10 digits')
+    }
+    else if(newName.length < 3){
+      setMsgs('Name should be minimum 3 characters')
+    }
     else{
       // setPersons(persons.concat(personObj));
-      axios.post(`${baseUrl}/api/persons`, personObj).then(response => setPersons(persons.concat(response.data)))
+      axios.post(`${baseUrl}/api/persons/`, personObj).then(response => setPersons(persons.concat(response.data)))
       setNewName(''); 
       setNewNum('');
       setMsgs('New contact added! : '+ newName)
@@ -136,7 +142,7 @@ const App = () => {
     if(window.confirm("Delete "+ n.name + '?')){
       persons.forEach(element => {
         if(element === n){
-          axios.delete(`${baseUrl}/api/persons` + n.id).then(setPersons(persons.filter(p => p.id !== n.id)))
+          axios.delete(`${baseUrl}/api/persons/` + n.id).then(setPersons(persons.filter(p => p.id !== n.id)))
           setMsgs('Deleted '+ n.name)
           
 
