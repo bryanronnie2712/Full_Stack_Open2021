@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const baseUrl = 'http://localhost:3001/api/persons';
+const baseUrl = process.env.API_URL || 'https://phone-servicefs23.onrender.com/api/persons';
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -107,7 +107,7 @@ const App = () => {
     }
     else{
       // setPersons(persons.concat(personObj));
-      axios.post('http://localhost:3001/api/persons', personObj).then(response => setPersons(persons.concat(response.data)))
+      axios.post(`${baseUrl}/api/persons`, personObj).then(response => setPersons(persons.concat(response.data)))
       setNewName(''); 
       setNewNum('');
       setMsgs('New contact added! : '+ newName)
@@ -136,7 +136,7 @@ const App = () => {
     if(window.confirm("Delete "+ n.name + '?')){
       persons.forEach(element => {
         if(element === n){
-          axios.delete('http://localhost:3001/api/persons/' + n.id).then(setPersons(persons.filter(p => p.id !== n.id)))
+          axios.delete(`${baseUrl}/api/persons` + n.id).then(setPersons(persons.filter(p => p.id !== n.id)))
           setMsgs('Deleted '+ n.name)
           
 
@@ -179,7 +179,7 @@ const App = () => {
         </tr>
         <tr>
           <td>Number</td>
-          <td>: <input  onChange={numberChange} pattern='[0-9]{10}'/></td>
+          <td>: <input  onChange={numberChange} type='number' pattern='[0-9]{10}'/></td>
         </tr>
       </tbody></table>
       <br/>
