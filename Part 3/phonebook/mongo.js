@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 
 const url = process.env.MONGODB_URI;
 
+
 mongoose.connect(url);
 
 const personSchema = new mongoose.Schema({

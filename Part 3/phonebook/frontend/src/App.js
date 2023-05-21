@@ -189,11 +189,16 @@ const App = () => {
 
 
       <h2>Numbers</h2>
+      <ol>
       {persons.filter(person => person.name.toLowerCase().includes(filterTerm.toLowerCase())).map(filteredPerson => (
+
         <li key={filteredPerson.id}>
-          {filteredPerson.name}   {filteredPerson.number}  <button onClick={() => deleteContact(filteredPerson)}>Delete</button>
+          <td style={{width:'300px', backgroundColor:'#efefef',border:'1px solid white', paddingLeft:'10px'}}>{filteredPerson.name}</td>
+          <td style={{width:'150px',backgroundColor:'#efefef',border:'1px solid white', textAlign:'right', paddingRight:'10px'}}>{filteredPerson.number}</td>
+          <td ><button onClick={() => deleteContact(filteredPerson)}>Delete</button></td>
         </li>
-      ))}
+
+      ))}</ol>
     </div>
   )
 }

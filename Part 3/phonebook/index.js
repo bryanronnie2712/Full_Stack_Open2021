@@ -62,7 +62,7 @@ app.post("/api/persons", (request, response, next) => {
     name: name,
     number: number,
   });
-
+  console.log(person)
   person
     .save()
     .then((savedPerson) => {
