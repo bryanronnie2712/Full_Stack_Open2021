@@ -1,5 +1,4 @@
-Frontend: https://clever-rolypoly-c4214a.netlify.app/
+Frontend: https://646a1a3b3e59cb7fec4c3339--clever-rolypoly-c4214a.netlify.app/
 
-Backend:  https://fs-openbackend.herokuapp.com/api/persons/
-        
-https://fs-openbackend.herokuapp.com/info
+Backend:  https://phone-servicefs23.onrender.com/api/persons/  
+          https://phone-servicefs23.onrender.com/info
