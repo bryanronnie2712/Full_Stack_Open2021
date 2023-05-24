@@ -30,7 +30,7 @@ const App = () => {
     if (message === null ) {
       return null
     }
-    if(message.includes('Enter a name') || message === 'Enter a number' || message === 'Please check your number: it should not exceed 10 digits' || message === 'Name should be minimum 3 characters'     )
+    if(message.includes('Enter a name') || message === 'Enter a number' || message === 'Please check your number: it should be atleast 8 digits' || message === 'Name should be minimum 3 characters' || message === 'Please check your number: Invalid - position'  )
     {
       return (
         <div style = {{ color: "red",
@@ -105,8 +105,11 @@ const App = () => {
     else if(newNum === ''){
       setMsgs('Enter a number')
     }
-    else if(newNum.length > 10){
-      setMsgs('Please check your number: it should not exceed 10 digits')
+    else if(newNum.length < 9){
+      setMsgs('Please check your number: it should be atleast 8 digits')
+    }
+    else if(newNum.charAt(2) != '-' && newNum.charAt(3) != '-'){
+      setMsgs('Please check your number: Invalid - position')
     }
     else if(newName.length < 3){
       setMsgs('Name should be minimum 3 characters')
@@ -185,7 +188,7 @@ const App = () => {
         </tr>
         <tr>
           <td>Number</td>
-          <td>: <input  onChange={numberChange} type='number' pattern='[0-9]{10}'/></td>
+          <td>: <input pattern="\d{2,3}-\d{6,}" title="Phone number must be in the format XX-XXXXXXX" required onChange={numberChange} type='text' /></td>
         </tr>
       </tbody></table>
       <br/>
